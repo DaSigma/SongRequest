@@ -4,7 +4,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #0e55e5;
   padding: 20px;
   color: white;
 }
@@ -25,7 +25,7 @@ label {
 
 button {
   padding: 10px 20px;
-  background-color: #61dafb;
+  background-color: #130ac2;
   border: none;
   cursor: pointer;
 }

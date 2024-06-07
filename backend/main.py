@@ -14,7 +14,8 @@ app = FastAPI()
 origins = [
     "http://localhost:8080",  # React frontend URL
     "http://127.0.0.1:8080",  # React frontend URL
-    "http://dsmoove1.com:8080",
+    "https://requests.dsmoove1.com",
+    "http://192.168.1.40:8080",
     # Add more origins if needed
 ]
 
@@ -24,6 +25,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"]
 )
 
 

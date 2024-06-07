@@ -1,12 +1,19 @@
 // src/components/SongRequestForm.js
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Snackbar from "@mui/material/Snackbar";
+
+
 
 
 const SongRequestForm = ({ onRequestSubmitted }) => {
   const [userName, setUserName] = useState("");
   const [songName, setSongName] = useState("");
   const [artistName, setArtistName] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [open, setOpen] = useState(true);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -19,18 +26,23 @@ const SongRequestForm = ({ onRequestSubmitted }) => {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/song-request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://api.dsmoove1.com/song-request",
+        // "http://localhost:8000/song-request",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         console.log("Song request submitted successfully");
+        setIsSubmitted(true)
         onRequestSubmitted();
-        history.push("/songs"); // Redirect to the songs page
+        // history.push("/songs"); // Redirect to the songs page
       } else {
         console.error("Failed to submit song request");
       }
@@ -41,6 +53,7 @@ const SongRequestForm = ({ onRequestSubmitted }) => {
     setUserName("");
     setSongName("");
     setArtistName("");
+    setOpen(true);
   };
 
   return (
@@ -75,7 +88,21 @@ const SongRequestForm = ({ onRequestSubmitted }) => {
           />
         </label>
       </div>
-      <button type="submit">Submit Request</button>
+      <button type="submit" className="btn btn-info">
+        Submit Request
+      </button>
+      {isSubmitted && (
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={() => setOpen(false)}
+        >
+          <Alert variant="filled" severity="success" sx={{ width: "100%" }}>
+            <AlertTitle>Success</AlertTitle>
+            Song Request Submitted!.
+          </Alert>
+        </Snackbar>
+      )}
     </form>
   );
 };

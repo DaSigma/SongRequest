@@ -6,40 +6,32 @@ import SongRequestForm from "./components/SongRequestForm";
 import Songs from "./components/Songs";
 
 function App() {
-    const [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState([]);
 
-    const fetchSongs = () => {
-      fetch("http://127.0.0.1:8000/songs")
-        .then((response) => response.json())
-        .then((data) => setSongs(data))
-        .catch((error) => console.error("Error fetching songs:", error));
-    };
+  const fetchSongs = () => {
+    fetch("https://api.dsmoove1.com/songs")
+    // fetch("http://localhost:8000/songs")
+      .then((response) => response.json())
+      .then((data) => setSongs(data))
+      .catch((error) => console.error("Error fetching songs:", error));
+  };
 
-    useEffect(() => {
-      fetchSongs();
-    }, []);
+  useEffect(() => {
+    fetchSongs();
+  }, []);
 
   return (
     <Router>
       <div className="App">
         <header className="App-header">
+          <h2>D-Smoove</h2>
           <h1>Song Request App</h1>
-          <nav>
-            <ul>
-              <li>
-                <Link to={"/"}>Home</Link>
-              </li>
-              <li>
-                <Link to={"/songs"}>Songs</Link>
-              </li>
-            </ul>
-          </nav>
         </header>
         <Switch>
-          <Route exact path="/" >
+          <Route exact path="/">
             <SongRequestForm onRequestSubmitted={fetchSongs} />
           </Route>
-          <Route path="/songs" element={<Songs/>}>
+          <Route path="/songs" element={<Songs />}>
             <Songs songs={songs} />
           </Route>
         </Switch>

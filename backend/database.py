@@ -21,4 +21,5 @@ class Song(Base):
 
 
 # Create the database tables
+# Base.metadata.drop_all(bind=engine, tables=[Song.__table__])
 Base.metadata.create_all(bind=engine)
