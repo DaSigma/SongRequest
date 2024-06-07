@@ -27,8 +27,8 @@ const SongRequestForm = ({ onRequestSubmitted }) => {
 
     try {
       const response = await fetch(
-        "https://api.dsmoove1.com/song-request",
-        // "http://localhost:8000/song-request",
+        // "https://api.dsmoove1.com/song-request",
+        "http://localhost:8000/song-request",
         {
           method: "POST",
           headers: {
@@ -88,17 +88,17 @@ const SongRequestForm = ({ onRequestSubmitted }) => {
           />
         </label>
       </div>
-      <button type="submit" className="btn btn-info">
+      <button type="submit" className="btn">
         Submit Request
       </button>
       {isSubmitted && (
         <Snackbar
           open={open}
-          autoHideDuration={3000}
+          autoHideDuration={30000}
           onClose={() => setOpen(false)}
         >
-          <Alert variant="filled" severity="success" sx={{ width: "100%" }}>
-            <AlertTitle>Success</AlertTitle>
+          <Alert variant="filled" severity="success" sx={{ width: "100%" }} className="fs-3">
+            <AlertTitle  className="fs-4">Success</AlertTitle>
             Song Request Submitted!.
           </Alert>
         </Snackbar>

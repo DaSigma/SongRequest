@@ -62,7 +62,7 @@ async def create_song_request(song_request: SongRequest, db: Session = Depends(g
         userName=song_request.userName,
         songName=song_request.songName,
         artistName=song_request.artistName,
-        date=datetime.datetime.utcnow(),  # Set the current date
+        date=datetime.datetime.now(),  # Set the current date
     )
     db.add(db_song)
     db.commit()

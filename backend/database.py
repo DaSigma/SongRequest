@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import datetime
@@ -17,7 +17,7 @@ class Song(Base):
     userName = Column(String, index=True)
     songName = Column(String, index=True)
     artistName = Column(String, index=True)
-    date=datetime.datetime.utcnow()  # Set the current date
+    date=Column(DateTime, index=True) # Set the current date
 
 
 # Create the database tables

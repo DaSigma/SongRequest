@@ -4,9 +4,11 @@
 }
 
 .App-header {
-  background-color: #0e55e5;
+  background-color: #130ac2;
   padding: 20px;
   color: white;
+  border-radius: 10%;
+  margin: 1em;
 }
 
 form {
@@ -23,9 +25,20 @@ label {
   margin-right: 10px;
 }
 
-button {
+button{
   padding: 10px 20px;
   background-color: #130ac2;
   border: none;
   cursor: pointer;
 }
+
+.btn {
+  background-color: #130ac2;
+  color: azure;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
