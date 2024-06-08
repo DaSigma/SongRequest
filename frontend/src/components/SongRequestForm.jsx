@@ -27,8 +27,8 @@ const SongRequestForm = ({ onRequestSubmitted }) => {
 
     try {
       const response = await fetch(
-        // "https://api.dsmoove1.com/song-request",
-        "http://localhost:8000/song-request",
+        "https://api.dsmoove1.com/song-request",
+        // "http://localhost:8000/song-request",
         {
           method: "POST",
           headers: {
@@ -60,7 +60,7 @@ const SongRequestForm = ({ onRequestSubmitted }) => {
     <form onSubmit={handleSubmit}>
       <div>
         <label>
-          User Name:
+          Your Name:
           <input
             type="text"
             value={userName}

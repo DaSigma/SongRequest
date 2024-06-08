@@ -9,8 +9,8 @@ function App() {
   const [songs, setSongs] = useState([]);
 
   const fetchSongs = () => {
-    // fetch("https://api.dsmoove1.com/songs")
-    fetch("http://localhost:8000/songs")
+    fetch("https://api.dsmoove1.com/songs")
+    // fetch("http://localhost:8000/songs")
       .then((response) => response.json())
       .then((data) => setSongs(data))
       .catch((error) => console.error("Error fetching songs:", error));

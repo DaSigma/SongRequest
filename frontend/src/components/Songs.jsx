@@ -1,10 +1,46 @@
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 
 const Songs = ({ songs }) => {
+  // Function to get unique dates from the songs array
+  const getUniqueDates = (songs) => {
+    const uniqueDates = songs.map((song) => format(song.date, "MMMM dd yyyy"));
+    return [...new Set(uniqueDates)];
+  };
+
+    const [selectedDate, setSelectedDate] = useState("");
+
+    const handleDateChange = (event) => {
+      setSelectedDate(event.target.value);
+    };
+    // Filter songs by the selected date
+    const filteredSongs = selectedDate
+      ? songs.filter(
+          (song) => format(song.date, "MMMM dd yyyy") === selectedDate
+        )
+      : songs;
+
 
   return (
     <div>
+      <div className="mb-3">
+        <label htmlFor="dateFilter" className="form-label">
+          Filter by Date:
+        </label>
+        <select
+          id="dateFilter"
+          className="form-select"
+          value={selectedDate}
+          onChange={handleDateChange}
+        >
+          <option value="">All Dates</option>
+          {getUniqueDates(songs).map((date) => (
+            <option key={date} value={date}>
+              {format(date, "MMMM do yyyy")}
+            </option>
+          ))}
+        </select>
+      </div>
       <h2>Songs</h2>
       <table className="table">
         <thead className="thead">
@@ -16,7 +52,7 @@ const Songs = ({ songs }) => {
           </tr>
         </thead>
         <tbody>
-          {songs.map((song) => (
+          {filteredSongs.map((song) => (
             <tr key={song.id}>
               <td>{song.userName}</td>
               <td>{song.songName}</td>
