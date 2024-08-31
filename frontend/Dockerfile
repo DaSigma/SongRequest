@@ -18,7 +18,7 @@ RUN npm install --no-cache
 
 
 # Make port 3000 available to the world outside this container
-EXPOSE 8080
+EXPOSE 8082
 
 # Run the app
 CMD ["npm", "run", "dev"]
