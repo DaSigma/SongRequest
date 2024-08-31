@@ -14,7 +14,7 @@ RUN npm install
 COPY . /app/
 
 # Build the React app
-RUN npm install --no-cache
+RUN npm install
 
 
 # Make port 3000 available to the world outside this container
