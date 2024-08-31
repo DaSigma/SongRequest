@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
+
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const Songs = ({ songs }) => {
   // Function to get unique dates from the songs array
@@ -57,7 +60,7 @@ const Songs = ({ songs }) => {
               <td>{song.userName}</td>
               <td>{song.songName}</td>
               <td>{song.artistName}</td>
-              <td>{format(song.date, "MMMM do yyyy, h:mm a")}</td>
+              <td>{formatInTimeZone(song.date, timeZone, "MMMM do yyyy, h:mm a")}</td>
             </tr>
           ))}
         </tbody>
